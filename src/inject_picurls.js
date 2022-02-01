@@ -1,4 +1,4 @@
-if (process.argv.length !== 4) {
+if (process.argv.length < 4) {
   console.error("You need to supply XML to inject PICURLS into as 1st argument and URL to the *root* of images folder as the 2nd argument.");
   process.exit();
 }
@@ -30,4 +30,9 @@ const options_back = {
 const back = new XMLBuilder(options_back);
 
 const xml = back.build(json);
-console.log(xml);
+
+if (process.argv[4]) {
+  fs.writeFileSync(process.argv[4], xml)
+} else {
+  console.log(xml);
+}
