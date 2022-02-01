@@ -18,6 +18,9 @@ const json = there.parse(
 const { cards } = json.cockatrice_carddatabase;
 cards.card.forEach(c => {
   c.set['@_picurl'] = process.argv[3] + '/' + c.set['#text'] + '/' + c.name + '.full.jpg';
+  if(c.set.rarity && c.set.rarity === '') {
+    c.set.rarity = 'basic';
+  }
 });
 
 const options_back = {
